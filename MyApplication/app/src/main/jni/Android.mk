@@ -1,0 +1,19 @@
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_CFLAGS := -std=c99 -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L \
+    -DNK_INCLUDE_FIXED_TYPES            \
+    -DNK_INCLUDE_DEFAULT_ALLOCATOR      \
+    -DNK_INCLUDE_STANDARD_IO            \
+    -DNK_INCLUDE_VERTEX_BUFFER_OUTPUT   \
+    -DNK_INCLUDE_FONT_BAKING            \
+    -DNK_INCLUDE_DEFAULT_FONT           \
+    -DGLES
+
+LOCAL_SRC_FILES := jniexports.c
+
+LOCAL_MODULE    := libnk-gl
+LOCAL_LDLIBS +=  -llog -ldl -lEGL -lGLESv2
+
+include $(BUILD_SHARED_LIBRARY)
